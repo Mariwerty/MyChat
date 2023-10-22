@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "315367572194",
+    "project_id": "mytestchat-7651f",
+    "storage_bucket": "mytestchat-7651f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315367572194:android:01aadcd20cb6021988d4bb",
+        "android_client_info": {
+          "package_name": "com.mariwerty.gigachat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMJvqV4tsua1um4EL_uK4KbHwltXBatvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
