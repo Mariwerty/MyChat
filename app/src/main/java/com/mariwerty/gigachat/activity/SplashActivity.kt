@@ -40,7 +40,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun startChat(){
-        val startChat = Intent(applicationContext, ChatActivity::class.java)
+        val startChat = Intent(applicationContext, ChatNewActivity::class.java)
         startActivity(startChat)
         finish()
     }
