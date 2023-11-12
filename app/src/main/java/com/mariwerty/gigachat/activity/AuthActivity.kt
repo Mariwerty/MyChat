@@ -1,9 +1,12 @@
 package com.mariwerty.gigachat.activity
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.mariwerty.gigachat.R
 import com.mariwerty.gigachat.databinding.ActivityAuthBinding
 import timber.log.Timber
@@ -28,8 +31,12 @@ class AuthActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).addOnCompleteListener {
                 if (it.isSuccessful) {
                     Timber.d("User created successfully: ${FirebaseAuth.getInstance().currentUser}")
+                    successfulAuth()
                 } else {
                     Timber.d("Error in user creation: ${it.exception.toString()}")
+                    if (it.exception is FirebaseAuthInvalidCredentialsException) {
+                        Toast.makeText(applicationContext, (it.exception as FirebaseAuthInvalidCredentialsException).message.toString(), Toast.LENGTH_SHORT).show()
+                    }
                 }
 
         }
@@ -40,5 +47,11 @@ class AuthActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             tryRegister()
         }
+    }
+
+    fun successfulAuth(){
+        val resultIntent = Intent()
+        setResult(RESULT_OK, resultIntent)
+        finish()
     }
 }
