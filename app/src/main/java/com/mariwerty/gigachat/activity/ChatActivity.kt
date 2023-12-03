@@ -11,8 +11,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.database
 import com.mariwerty.gigachat.R
+import com.mariwerty.gigachat.data.User
 import com.mariwerty.gigachat.databinding.ActivityChatBinding
+import timber.log.Timber
+import java.util.Date
 
 class ChatActivity : AppCompatActivity() {
 
@@ -21,6 +27,8 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        updateUserData()
 
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -45,6 +53,16 @@ class ChatActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    private fun updateUserData() {
+        val currentUserId = FirebaseAuth.getInstance().currentUser!!.uid
+        val dataBase = Firebase.database
+        val usersRef = dataBase.getReference(USERS_REF)
+        val currentUserRef = usersRef.child(currentUserId)
+        val user = User(currentUserId, "John", Date())
+        currentUserRef.setValue(user)
+        Timber.d(user.toString())
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.chat, menu)
@@ -55,4 +73,8 @@ class ChatActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_chat)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
 }
+
+const val USERS_REF = "USERS"
+

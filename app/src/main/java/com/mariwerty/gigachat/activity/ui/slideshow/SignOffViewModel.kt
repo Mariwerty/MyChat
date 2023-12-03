@@ -1,13 +1,13 @@
-package com.mariwerty.gigachat.activity.ui.home
+package com.mariwerty.gigachat.activity.ui.slideshow
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class SignOffViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "Are you sure you want to log out?"
     }
     val text: LiveData<String> = _text
 }
