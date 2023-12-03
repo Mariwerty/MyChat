@@ -1,4 +1,4 @@
-package com.mariwerty.gigachat.activity.ui.home
+package com.mariwerty.gigachat.activity.ui.chat
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

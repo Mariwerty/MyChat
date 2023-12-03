@@ -1,4 +1,4 @@
-package com.mariwerty.gigachat.activity.ui.slideshow
+package com.mariwerty.gigachat.activity.ui.signoff
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.mariwerty.gigachat.activity.ChatActivity
 import com.mariwerty.gigachat.activity.SplashActivity
 import com.mariwerty.gigachat.databinding.FragmentSignoffBinding
 

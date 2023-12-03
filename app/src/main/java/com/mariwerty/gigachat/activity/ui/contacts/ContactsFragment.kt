@@ -1,13 +1,15 @@
-package com.mariwerty.gigachat.activity.ui.gallery
+package com.mariwerty.gigachat.activity.ui.contacts
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -37,11 +39,7 @@ class ContactsFragment : Fragment() {
 
         _binding = FragmentContactsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textGallery
-        contactsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        binding.rvContacts.layoutManager = LinearLayoutManager(context)
         return root
     }
 
@@ -61,6 +59,9 @@ class ContactsFragment : Fragment() {
                             user.let { list.add(user!!) }
                             Log.d("myTag","User found: $user")
                         }
+                        val adapter = ContactsAdapter()
+                        adapter.users = list
+                        binding.rvContacts.adapter = adapter
                     } else {
                         Timber.e("Contacts snapshot doesn't exist")
                     }

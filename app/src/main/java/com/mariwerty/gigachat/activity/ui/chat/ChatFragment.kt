@@ -1,4 +1,4 @@
-package com.mariwerty.gigachat.activity.ui.home
+package com.mariwerty.gigachat.activity.ui.chat
 
 import android.os.Bundle
 import android.view.LayoutInflater
